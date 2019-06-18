@@ -30,7 +30,7 @@ o Users(Teachers)-> Log In
 
     has_many :courses
     has_many :students, through :courses
-  
+
 
 Id | Name   |  Email  | Password  |    X         x
 ---|--------|---------|-----------|-----------|-----------
@@ -84,3 +84,32 @@ Id | value  |  comment|  Course_id | student_id
 2  |  100   |         |    2      |    2
 2  |   88   |         |    2      |    4
 2  |  73    |         |    2      |    6
+
+6/18 Updated model relationships
+
+User
+  -username
+  -email
+  -password
+  -has_many :Courses
+  -has_many :students, through :Courses
+
+
+Student
+  -has_many :grades
+  -has_many :courses, through: grades
+  -first_name
+  -last_name
+
+
+Course
+  -belongs_to :user
+  -has_many :grades
+  -has_many :courses, through :grades
+  -coursename
+
+Grade
+  -belongs_to :student
+  -belongs_to: course
+  -value
+  -commment

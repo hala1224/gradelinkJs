@@ -3,8 +3,9 @@ class CreateGrades < ActiveRecord::Migration[5.2]
     create_table :grades do |t|
       t.integer :value
       t.text  :comment
-      t.integer :course_id
-      t.integer :student_id 
+      t.belongs_to :course, foreign_key: true
+      t.belongs_to :student, foreign_key: true
+    
       t.timestamps
     end
   end
