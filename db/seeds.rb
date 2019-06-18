@@ -22,7 +22,7 @@ def main
 end
 
 def make_students
-    30.times do
+    10.times do
       Student.create(
         first_name: Faker::Name.male_first_name,
         last_name:  Faker::Name.last_name

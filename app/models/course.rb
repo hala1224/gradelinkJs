@@ -8,9 +8,9 @@ class Course < ApplicationRecord
   # , optional: true
 
   # validate :duplicate
-  # validates :coursename, presence: true
-  # validates :user_id, optional: false
-   accepts_nested_attributes_for :user
+  validates :coursename, presence: true
+  validates :user_id, optional: false
+   # accepts_nested_attributes_for :user
   # validates :student_id, presence: true
   # validates_associated :student
 #

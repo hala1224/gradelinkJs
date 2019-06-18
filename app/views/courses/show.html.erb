@@ -1,3 +1,6 @@
+
+
+
 <h3>Course: <%= @course.coursename %></h3>
 
 <table class='table table-bordered'>
@@ -10,12 +13,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @students.each do |student| %>
+    <% @students.each_with_index do |student, index| %>
       <tr>
          <td><%= student.last_name %> ,<%= student.first_name%></td>
-          <td><%= student.first_name %></td>
-          <td><%= student.first_name %></td>
-
+        <% if @course.id = student.grades[index].course_id %>
+          <td><%= student.grades[index].value %></td>
+          <td><%= student.grades[index].comment %></td>
+       <% end %>
       </tr>
     <% end %>
 
@@ -26,16 +30,15 @@
 <p>
     <button class="btn btn-outline-primary">
         <%= link_to "Add Student", new_student_path(@course) %></button>
-    <button class="btn btn-outline-primary">
-        <%= link_to "Remove Student", edit_student_path(@course), method: :delete  %> </button>
-    <button class="btn btn-outline-primary">
+
         <%= link_to "Edit Grades", edit_grade_path(@course) %></button>
     <button class="btn btn-outline-primary">
-        <%= link_to "Enter Grades", new_grade_path(@course) %></button>
+     
+        <%= link_to "Enter Grades", new_course_grade_path(@course) %></button>
     <button class="btn btn-outline-primary">
-        <%= link_to "Add Comments", edit_grade_path(@course) %></button> 
-    <button class="btn btn-outline-primary">
-        <%= link_to "Delete Course", course_path(@course), method: :delete  %> </button>
+
+
+        <%= link_to "Delete Course", course_path(@course), data: { confirm: 'Are you sure?' }, method: :delete  %> </button>
 
 </p>
 

@@ -70,6 +70,7 @@ class CoursesController < ApplicationController
 
   def edit
      set_course
+     render :edit
   end
 
   def update
