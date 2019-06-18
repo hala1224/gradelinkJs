@@ -1,7 +1,8 @@
 class Course < ApplicationRecord
-  
+
   has_many :grades
   has_many :students, through: :grades
+
   belongs_to :user
   # get rid off  belongs_to :student
   # , optional: true

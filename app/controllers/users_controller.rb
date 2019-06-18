@@ -12,13 +12,18 @@ class UsersController < ApplicationController
       #log in the users
       session[:user_id] = @user.id
       # fix the redirect later
-      redirect_to courses_path
+      # redirect_to courses_path
+      redirect_to user_path(@user)
 
     else
       render :new
     end
   end
 
+  def show
+   @user = User.find_by_id(params[:id])
+   redirect_to '/' if !@user
+  end
 
   private
 
