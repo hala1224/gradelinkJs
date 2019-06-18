@@ -38,6 +38,6 @@
     <%= link_to "All grades", course_grades_path(@course)%></button>
 <button class="btn btn-outline-primary">
 
-  
+    <%= link_to "Delete Course", course_path(@course), data: { confirm: 'Are you sure?' }, method: :delete  %> </button>
 
 <% end %>

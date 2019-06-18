@@ -4,8 +4,8 @@ class Grade < ApplicationRecord
 
   validates :value, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
   validates :comment, presence: true
-  
-  validates :value, uniqueness: true
+
+  # validates :value, uniqueness: true
   # , allow_blank: true
 
   # validates :student_id, presence: true

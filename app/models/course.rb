@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   belongs_to :user
-  has_many :grades
+  has_many :grades, dependent: :destroy
   has_many :students, through: :grades
 
 

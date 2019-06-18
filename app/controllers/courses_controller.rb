@@ -10,7 +10,9 @@ class CoursesController < ApplicationController
    def show
      set_course
      # put this into model as scope method
-      @students = Student.all.order(:last_name)
+      @students = Student.all
+      @grades = @course.grades
+      # .order(:last_name)
      # @student_ids = params[:selected_students]
    end
 

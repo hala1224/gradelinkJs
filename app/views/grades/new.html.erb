@@ -1,6 +1,5 @@
-<!--had render form 2  -->
-
-
+      <!-- text_field :student_id, :value => @not_graded_students[0].last_name  -->
+<!--collection_select :student_id, @not_graded_students, :id, :last_name   -->
 <h2>Enter Grades </h2>
 <%= render partial: "layouts/errors", locals: { object: @grade } %>
 
@@ -16,19 +15,16 @@
     </tr>
   </thead>
   <tbody>
-    <% not_graded_students =[] %>
+
     <% @students.each.with_index do |student, index| %>
       <tr>
          <td><%= student.last_name %> ,<%= student.first_name%></td>
          <% if index < @course.grades.count %>
-           <% graded_student = @course.grades[index][:student_id] %>
-           <% if student.id = graded_student %>
-              <td><%= @course.grades[index][:value] %></td>
-              <td><%= @course.grades[index][:comment] %></td>
-            <% end %>
-          <% else %>
-            <!--Not_graded_students array  -->
-              <% not_graded_students.push(student) %>
+           <td> <%= @student_grade[index] %> </td>
+           <td> <%= @student_comment[index] %> </td>
+
+        <% else %>
+
               <td> NG </td>
               <td> No Comment </td>
           <% end %>
@@ -42,8 +38,11 @@
     <%= f.hidden_field :course_id, :value => @course.id %>
     <div>
       <%= f.label :student_id, "Enter Grade for " %>
-      <%= f.collection_select :student_id, not_graded_students, :id, :last_name %>
-    </div>
+
+
+
+      <%= f.collection_select :student_id, @not_graded_students, :id, :last_name %>
+      
     <br>
 
   <div>

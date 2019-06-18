@@ -14,25 +14,30 @@
     </tr>
   </thead>
   <tbody>
-    <% @courses.each.with_index do |course, index| %>
+    <% @student_courses.each.with_index do |course, index| %>
       <tr>
-         <% current_course = @courses[index][:coursename] %>
-         <td><%= current_course %> </td>
-          <td><%= @grades[index][:value] %></td>
-          <td><%= @grades[index][:comment] %></td>
+
+            <td><%= course[:coursename] %> </td>
+             <% if index < @grades.count %>
+               <td><%= @grades[index][:value] %></td>
+               <td><%= @grades[index][:comment] %></td>
+            <% else %>
+               <td> NG </td>
+               <td>No Comment </td>
+            <% end %>
 
       </tr>
     <% end %>
 
   </tbody>
 </table>
-<% if @course.user == current_user %>
-<p>
+          <% if current_user %>
+          <p>
 
 
- Will add a link here
+           Will add a link here
 
 
-</p>
+          </p>
 
-<% end %>
+          <% end %>
