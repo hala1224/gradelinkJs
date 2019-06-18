@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       Course.all.each do |course|
         if course.user_id == session[:user_id]
           c.push(course)
-          byebug
+          # byebug
         end
       end
       @courses = c

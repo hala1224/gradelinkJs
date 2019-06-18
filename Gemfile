@@ -24,6 +24,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'pry'
+gem 'thin'
+gem 'google-api-client', '~> 0.11'
 
 # bootstrap
 
@@ -40,6 +42,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth'
+gem 'omniauth-google-oauth2'
 #OmniAuth strategy for Facebook
 gem 'omniauth-facebook'
 #OmniAuth strategy for GitHub (To be implemented later)

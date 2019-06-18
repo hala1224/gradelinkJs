@@ -38,11 +38,8 @@
     <%= f.hidden_field :course_id, :value => @course.id %>
     <div>
       <%= f.label :student_id, "Enter Grade for " %>
-
-
-
       <%= f.collection_select :student_id, @not_graded_students, :id, :last_name %>
-      
+
     <br>
 
   <div>
