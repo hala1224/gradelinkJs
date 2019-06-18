@@ -1,0 +1,22 @@
+<h3>Here are the students</h3>
+
+
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th style="width:200px;">Last Name </th>
+
+      <th >First Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+         <td><%= link_to " #{student.last_name}", student_path(student) %> </td>
+          <td><%= student.first_name %></td>
+
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

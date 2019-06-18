@@ -1,0 +1,42 @@
+<h3>Course: <%= @course.coursename %></h3>
+
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th style="width:300px;">Student </th>
+
+      <th style="width:50px;">Grade</th>
+      <th >Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+         <td><%= student.last_name %> ,<%= student.first_name%></td>
+          <td><%= student.first_name %></td>
+          <td><%= student.first_name %></td>
+
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<% if @course.user == current_user %>
+<p>
+    <button class="btn btn-outline-primary">
+        <%= link_to "Add Student", new_student_path(@course) %></button>
+    <button class="btn btn-outline-primary">
+        <%= link_to "Remove Student", edit_student_path(@course), method: :delete  %> </button>
+    <button class="btn btn-outline-primary">
+        <%= link_to "Edit Grades", edit_grade_path(@course) %></button>
+    <button class="btn btn-outline-primary">
+        <%= link_to "Enter Grades", new_grade_path(@course) %></button>
+    <button class="btn btn-outline-primary">
+        <%= link_to "Add Comments", edit_grade_path(@course) %></button> 
+    <button class="btn btn-outline-primary">
+        <%= link_to "Delete Course", course_path(@course), method: :delete  %> </button>
+
+</p>
+
+<% end %>

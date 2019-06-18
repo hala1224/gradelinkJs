@@ -1,0 +1,30 @@
+<h1>Select a course </h1>
+
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th style="width:30px;"> Courses </th>
+
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |c| %>
+      <tr>
+
+          <td><%= c %></td>
+      </tr>
+    <% end %>
+  <!--Drop down   -->
+    <label for="course-choice">Choose a course:</label>
+    <input list="available-courses" id="course-choice" name="course-choice" />
+
+    <br><br>
+
+    <datalist id="available-courses">
+        <option value="Algebra 1">
+        <option value="Algebra 2">
+        <option value="Geometry">
+        <option value="PreCalculus">
+        <option value="Calculus">
+    </datalist>

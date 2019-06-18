@@ -1,0 +1,10 @@
+<h1>Click on Course to View </h1>
+<div>
+<% @courses.each do |c| %>
+  <% if c.coursename !=nil %>
+  <ul>
+    <h4><%= link_to " #{c.coursename}", course_path(c) %></h4>
+  </ul>
+  <% end %>
+  <% end %>
+</div>
