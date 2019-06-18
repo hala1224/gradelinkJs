@@ -1,2 +1,61 @@
+<!--had render form 2  -->
+
+
 <h2>Enter Grades </h2>
-<%= render 'form' %>
+<%= render partial: "layouts/errors", locals: { object: @grade } %>
+
+
+<%= form_for([@course, @grade]) do |f|%>
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th style="width:300px;">Student </th>
+
+      <th style="width:50px;">Grade</th>
+      <th >Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% not_graded_students =[] %>
+    <% @students.each.with_index do |student, index| %>
+      <tr>
+         <td><%= student.last_name %> ,<%= student.first_name%></td>
+         <% if index < @course.grades.count %>
+           <% graded_student = @course.grades[index][:student_id] %>
+           <% if student.id = graded_student %>
+              <td><%= @course.grades[index][:value] %></td>
+              <td><%= @course.grades[index][:comment] %></td>
+            <% end %>
+          <% else %>
+            <!--Not_graded_students array  -->
+              <% not_graded_students.push(student) %>
+              <td> NG </td>
+              <td> No Comment </td>
+          <% end %>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+
+    <%= f.hidden_field :course_id, :value => @course.id %>
+    <div>
+      <%= f.label :student_id, "Enter Grade for " %>
+      <%= f.collection_select :student_id, not_graded_students, :id, :last_name %>
+    </div>
+    <br>
+
+  <div>
+       <%= f.label :value %>
+       <%= f.number_field :value, min:0, max:100 %>
+  </div>
+  <br></br>
+  <div>
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+  </div>
+
+
+<%= f.submit %>
+<% end %>

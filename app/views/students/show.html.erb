@@ -1,4 +1,38 @@
-<h1>Students</h1>
-<%= @students.each do |student| %>
-    <h4>  <%= student.last_name %> </h4>
+<!--This will be the dashboard for specific student  -->
+<!--List of courses with the associated grade  -->
+<!--   -->
+
+<h3>Dashboard for: <%= @student.first_name %>, <%=@student.last_name %></h3>
+
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th style="width:300px;">Course </th>
+
+      <th style="width:50px;">Grade</th>
+      <th >Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each.with_index do |course, index| %>
+      <tr>
+         <% current_course = @courses[index][:coursename] %>
+         <td><%= current_course %> </td>
+          <td><%= @grades[index][:value] %></td>
+          <td><%= @grades[index][:comment] %></td>
+
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<% if @course.user == current_user %>
+<p>
+
+
+ Will add a link here
+
+
+</p>
+
 <% end %>

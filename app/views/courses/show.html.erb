@@ -6,40 +6,38 @@
 <table class='table table-bordered'>
   <thead>
     <tr>
-      <th style="width:300px;">Student </th>
+      <th style="width:300px;">Student Count </th>
 
-      <th style="width:50px;">Grade</th>
-      <th >Comment</th>
+      <th style="width:50px;">Grades Completed</th>
+      <th >Comments Completed</th>
     </tr>
   </thead>
   <tbody>
-    <% @students.each_with_index do |student, index| %>
+
       <tr>
-         <td><%= student.last_name %> ,<%= student.first_name%></td>
-        <% if @course.id = student.grades[index].course_id %>
-          <td><%= student.grades[index].value %></td>
-          <td><%= student.grades[index].comment %></td>
-       <% end %>
+         <td><%= @students.count %> </td>
+        <td><%= @course.grades.count %></td>
+        <td><%= @course.grades{:comment}.count %></td>
+
       </tr>
-    <% end %>
+
 
   </tbody>
 </table>
 
 <% if @course.user == current_user %>
 <p>
+
+
+
+    <% if @course.grades.count < @students.count %>
+        <%= link_to "Enter Grade/Comment", new_course_grade_path(@course) %></button>
     <button class="btn btn-outline-primary">
-        <%= link_to "Add Student", new_student_path(@course) %></button>
+    <% end %>
 
-        <%= link_to "Edit Grades", edit_grade_path(@course) %></button>
-    <button class="btn btn-outline-primary">
-     
-        <%= link_to "Enter Grades", new_course_grade_path(@course) %></button>
-    <button class="btn btn-outline-primary">
+    <%= link_to "All grades", course_grades_path(@course)%></button>
+<button class="btn btn-outline-primary">
 
-
-        <%= link_to "Delete Course", course_path(@course), data: { confirm: 'Are you sure?' }, method: :delete  %> </button>
-
-</p>
+  
 
 <% end %>

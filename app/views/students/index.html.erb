@@ -20,3 +20,9 @@
 
   </tbody>
 </table>
+<% if current_user %>
+<p>
+    <button class="btn btn-outline-primary">
+        <%= link_to "Add Student", new_student_path(@course) %></button>
+</p>
+<% end %>

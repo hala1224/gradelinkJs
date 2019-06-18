@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   resources :users
   # , only: [:create, :new, :show]
   resources :courses do
-    resources :grades, only: [:new, :index, :edit, :show]
+    resources :grades, only: [:new, :index, :show, :create]
+      # :edit, :show]
   end
-  resources :students
+  resources :students do
+    resources :grades, only: [:show, :index]
+  end
   resources :grades
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,6 +1,6 @@
 <%= form_for(@course) do |f| %>
 
-
+<%= render partial: 'layouts/errors', locals: {object: @course} %>
    <p> Create a New Course </p>
 
 

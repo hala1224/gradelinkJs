@@ -7,7 +7,11 @@ class StudentsController < ApplicationController
   def show
     # @student = Student.find_by(id: params[:id])
     set_student
-    @students = Student.all.order(:last_name)
+    # put this into model as scope method
+    # @courses = Course.all.order(:coursename)
+    @courses = Course.all
+    @grades = @student.grades
+    # redirect_to student_grades_path(@student)
   end
 
   def edit

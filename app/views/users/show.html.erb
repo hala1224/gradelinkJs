@@ -1,22 +1,28 @@
 
 <br><br>
 <h1> Welcome <%= @user.username %> </h1>
-<table class='table table-bordered'>
-  <thead>
-    <tr>
-      <th style="width:30px;"> Courses </th>
+<% if @courses != nil %>
+    <table class='table table-bordered'>
+      <thead>
+        <tr>
+          <th style="width:30px;"> Courses </th>
 
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |c| %>
-      <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do |c| %>
+          <tr>
 
-          <td><%= c.coursename %></td>
-      </tr>
-    <% end %>
-
+              <td><%= c.coursename %></td>
+          </tr>
+        <% end %>
+  <% else %>
+      <br><br>
+      <h2>No Courses to Show</h2>
+      <br><br>
+      <h3>Click link below</h3>   
+   <%end%>
 <% if current_user %>
   <% @new_course = Course.new(user_id: @user.id).save %>
   <%= link_to "New Course", new_course_path(@new_course) %>

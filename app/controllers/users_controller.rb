@@ -14,6 +14,16 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       # fix the redirect later
       # redirect_to courses_path
+      c=[]
+      Course.all.each do |course|
+        if course.user_id == session[:user_id]
+          c.push(course)
+          byebug
+        end
+      end
+      @courses = c
+
+
       redirect_to user_path(@user)
 
     else

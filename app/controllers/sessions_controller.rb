@@ -22,6 +22,9 @@ class SessionsController < ApplicationController
 
   end
 
+  def index
+  end
+
   def home
   end
 

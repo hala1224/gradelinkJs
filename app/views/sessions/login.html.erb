@@ -3,6 +3,9 @@
 
 <!-- url: '/login' -->
   <p><%= @error %></p>
+  <% if flash[:message]%>
+    <%= flash[:message] %>
+  <% end %>
 
 
 <%= form_for :user do |f| %>
