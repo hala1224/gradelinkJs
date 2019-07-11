@@ -1,5 +1,3 @@
-      <!-- text_field :student_id, :value => @not_graded_students[0].last_name  -->
-<!--collection_select :student_id, @not_graded_students, :id, :last_name   -->
 <h2>Enter Grades </h2>
 <%= render partial: "layouts/errors", locals: { object: @grade } %>
 
@@ -19,11 +17,11 @@
     <% @students.each.with_index do |student, index| %>
       <tr>
          <td><%= student.last_name %> ,<%= student.first_name%></td>
-         <% if index < @course.grades.count %>
-           <td> <%= @student_grade[index] %> </td>
-           <td> <%= @student_comment[index] %> </td>
-
-        <% else %>
+           <% grade=student.grades.find_by course_id: @course.id %>
+            <% if grade %>
+              <td> <%= grade[:value] %> </td>
+              <td> <%= grade[:comment]%> </td>
+           <% else %>
 
               <td> NG </td>
               <td> No Comment </td>
@@ -38,7 +36,7 @@
     <%= f.hidden_field :course_id, :value => @course.id %>
     <div>
       <%= f.label :student_id, "Enter Grade for " %>
-      <%= f.collection_select :student_id, @not_graded_students, :id, :last_name %>
+      <%= f.collection_select :student_id, Student.all, :id, :last_name  %>
 
     <br>
 
