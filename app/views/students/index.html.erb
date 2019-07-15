@@ -1,17 +1,19 @@
-<h3>Here are the students</h3>
+<h3>Students by Ranking Order</h3>
 
 
 <table class='table table-bordered'>
   <thead>
     <tr>
+      <th style="width:50px;">Rank</th>
       <th style="width:200px;">Last Name </th>
 
       <th >First Name</th>
     </tr>
   </thead>
   <tbody>
-    <% @students.each do |student| %>
+    <% @students.each.with_index(1) do |student, index| %>
       <tr>
+         <td><%= index %>
          <td><%= link_to " #{student.last_name}", student_path(student) %> </td>
           <td><%= student.first_name %></td>
 

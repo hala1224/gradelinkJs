@@ -14,18 +14,22 @@
     </tr>
   </thead>
   <tbody>
-    <% @student_courses.each.with_index do |course, index| %>
+    <% @grades.each do |grade| %>
       <tr>
-
+        <% course = @courses.find_by id: grade.course_id %>
+        <% if course[:user_id] == current_user.id %>
             <td><%= course[:coursename] %> </td>
-             <% if index < @grades.count %>
-               <td><%= @grades[index][:value] %></td>
-               <td><%= @grades[index][:comment] %></td>
-            <% else %>
-               <td> NG </td>
-               <td>No Comment </td>
-            <% end %>
 
+            <% if grade == nil  %>
+                <td> NG </td>
+                <td>No Comment </td>
+            <% else %>
+
+                 <td><%= grade[:value] %></td>
+                 <td><%= grade[:comment] %></td>
+
+            <% end %>
+          <% end %>
       </tr>
     <% end %>
 
@@ -35,7 +39,7 @@
           <p>
 
 
-           Will add a link here
+           Will put the Average here
 
 
           </p>

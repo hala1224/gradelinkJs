@@ -30,7 +30,7 @@ class GradesController < ApplicationController
       #nested & a valid id
         @students = Student.all
         if @course = Course.find_by_id(params[:course_id])
-           #nested
+           #nested ? scope method
             @grades = @course.grades.order(:student_id)
         else
             #it's not nested

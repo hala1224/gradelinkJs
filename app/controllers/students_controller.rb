@@ -1,26 +1,14 @@
 class StudentsController < ApplicationController
 
   def index
-    @students = Student.all
-    # .order(:last_name)
+    @students = Student.order_by_average
+    # @students = Student.alpha
   end
 
   def show
-    # @student = Student.find_by(id: params[:id])
     set_student
-    # put this into model as scope method
-    # @courses = Course.all.order(:coursename)
-    @student_courses=[]
     @courses = Course.all
-    @grades = @student.grades.order(:course_id)
-    @courses.each.with_index do |course, index|
-
-      if course[:user_id] == current_user.id
-        @student_courses.push(course)
-      end
-    end
-   # byebug
-    # redirect_to student_grades_path(@student)
+    @grades = @student.grades
   end
 
   def edit
