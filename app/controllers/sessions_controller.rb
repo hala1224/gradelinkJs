@@ -1,10 +1,6 @@
 class SessionsController < ApplicationController
 
-# skip_before_action :verify_authenticity_token
-
-
   def new
-    # can take out @user = User.new & in sessions/new.html.erb change form_for(:user)
     @user = User.new
     render :login
   end
@@ -25,13 +21,8 @@ class SessionsController < ApplicationController
 
 
          @user = User.find_by(username: params[:user][:username])
-
-          # if @user && @user.authenticate(params[:user][:password])
-            # or @user.try(.authenticate(params[:user][:password])
          if @user.try(:authenticate, params[:user][:password])
             session[:user_id] = @user.id
-
-            # redirect_to courses_path * changed to user_path
             redirect_to courses_path(@user)
           else
             flash[:error] = "Sorry, your username or password was incorrect"

@@ -4,7 +4,7 @@ class GradesController < ApplicationController
   def new
     @students = Student.all
     @course = Course.find_by_id(params[:course_id])
-    @grade = @course.grades.build #has_many & grade belongs_to course
+    @grade = @course.grades.build 
   end
 
   def create
@@ -27,13 +27,10 @@ class GradesController < ApplicationController
     end
 
     def index
-      #nested & a valid id
         @students = Student.all
         if @course = Course.find_by_id(params[:course_id])
-           #nested ? scope method
             @grades = @course.grades.order(:student_id)
         else
-            #it's not nested
             @grades = Grade.all
         end
     end

@@ -2,7 +2,6 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.order_by_average
-    # @students = Student.alpha
   end
 
   def show
@@ -30,8 +29,6 @@ class StudentsController < ApplicationController
 
    def create
      @student = Student.new(student_params)
-     # @student.user_id = session[:user_id]
-
      if @student.save
        redirect_to students_path
      else
@@ -40,9 +37,6 @@ class StudentsController < ApplicationController
    end
 
    def destroy
-     # Need form to select a student
-
-     # byebug
      set_student
      @student.destroy
      redirect_to students_path

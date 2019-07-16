@@ -1,27 +1,24 @@
 
 class UsersController < ApplicationController
 
-  #loading signup form
+
   def new
     @user = User.new
   end
 
-  #signup
   def create
     @user = User.new(user_params)
     if @user.save
       #log in the users
       session[:user_id] = @user.id
-      # fix the redirect later
-      # redirect_to courses_path
       c=[]
       Course.all.each do |course|
         if course.user_id == session[:user_id]
           c.push(course)
-          # byebug
         end
       end
       @courses = c
+      byebug
 
 
       redirect_to user_path(@user)
