@@ -1,37 +1,22 @@
+<%= form_for(@grade) do |f|%>
 
-<%= form_for(@course) do |f|%>
-  <% if params[:course_id] %>
-    <%= f.hidden_field :course_id %>
-  <% else %>
-    <div>
-      <%= f.label :course_id, "Select a Course" %>
-      <%= f.collection_select :course_id, Course.all, :course_id, :coursename, include_blank: true %>
-    </div>
-  <% end %>
-  <table class='table table-bordered'>
-    <thead>
-      <tr>
-        <th style="width:300px;">Student </th>
+<%= render partial: 'layouts/errors', locals: {object: @grade} %>
+  <!-- f.hidden_field :course_id, :value => @course.id %>  %> -->
+<div>
+  <%= f.label :student_id, "Select a Student" %>
+  <%= f.collection_select :student_id, Student.alpha, :id, :last_name %>
 
-        <th style="width:50px;">Grade</th>
-        <th >Comment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @students.each do |student| %>
-        <tr>
-           <td><%= student.last_name %> ,<%= student.first_name%></td>
-
-              <td> <%= f.number_field :value, min:0, max:100 %></td>
-
-               <td><%= f.text_field :comment %> </td>
-
-      <% end %>
-
-    </tbody>
-  </table>
+</div>
+<br>
+<div>
+     <%= f.label :value %>
+     <%= f.number_field :value, min:0, max:100 %>
+</div>
+<br></br>
+<div>
+  <%= f.label :comment %>
+  <%= f.text_field :comment%>
+</div>
 
 <%= f.submit %>
-
-
 <% end %>
