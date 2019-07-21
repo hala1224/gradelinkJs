@@ -11,16 +11,6 @@ class UsersController < ApplicationController
     if @user.save
       #log in the users
       session[:user_id] = @user.id
-      c=[]
-      Course.all.each do |course|
-        if course.user_id == session[:user_id]
-          c.push(course)
-        end
-      end
-      @courses = c
-      byebug
-
-
       redirect_to user_path(@user)
 
     else
