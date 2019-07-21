@@ -1,6 +1,6 @@
 Gradelink
 
-A ruby on rails app that helps a teacher to create(or delete) a course, enter grades quickly and display students' ranking in a particular class.
+A ruby on rails app that helps a teacher to create(or delete) a course, enter grades quickly and display students' by overall ranking.
 
 
 

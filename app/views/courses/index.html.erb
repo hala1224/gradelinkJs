@@ -1,17 +1,17 @@
 <h1> Welcome <%= current_user.username %> </h1>
 <br><br>
-
-<h1>Click on Course to View </h1>
-
-
-
-
-     <div>
-       <% @courses.each do |c| %>
-         <% if c.coursename !=nil %>
-         <ul>
-           <h4><%= link_to " #{c.coursename}", course_path(c) %></h4>
-         </ul>
-         <% end %>
-         <%end%>
-       </div>
+<% if @courses.count == 0 %>
+  <p> You do not have any courses </p>
+  <h3> Click "New Course" button  </h3>
+     <% else %>
+        <h3>Click on Course to View </h3>
+         <div>
+           <% @courses.each do |c| %>
+             <% if c.coursename !=nil %>
+             <ul>
+               <h4><%= link_to " #{c.coursename}", course_path(c) %></h4>
+             </ul>
+             <% end %>
+             <%end%>
+           </div>
+      <% end %>
