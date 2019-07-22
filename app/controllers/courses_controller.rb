@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-
+# before_action :set_course
 
    def index
        @courses = current_user.courses

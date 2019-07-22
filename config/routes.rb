@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+  get '/most_popular_teacher' => 'users#most_popular'
+
   get '/auth/:provider/callback' => 'sessions#create'
   resources :users
   # , only: [:create, :new, :show]
