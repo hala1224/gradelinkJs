@@ -19,4 +19,8 @@ class User < ApplicationRecord
     end
   end
 
+  scope :most_popular, -> {joins(:courses).group("courses.user_id").order("count(courses.user_id) desc").first}
+
+  
+
 end

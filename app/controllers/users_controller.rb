@@ -23,11 +23,9 @@ class UsersController < ApplicationController
    redirect_to '/' if !@user
   end
 
-   def most_popular
-    user = User.all
-    @teacher = user.joins(:courses).group("courses.user_id").order("count(courses.user_id) desc").first
-    render :most_popular
-   end
+  def most_popular
+   @teacher = User.most_popular
+  end
 
   private
 
