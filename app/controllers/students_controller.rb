@@ -1,21 +1,21 @@
 class StudentsController < ApplicationController
+before_action :set_student
+
 
   def index
     @students = Student.order_by_average
   end
 
   def show
-    set_student
     @courses = Course.all
     @grades = @student.grades
   end
 
   def edit
-     set_student
+
   end
 
   def update
-    set_student
     if @student.update(student_params)
       redirect_to student_path(@student)
     else
@@ -37,7 +37,6 @@ class StudentsController < ApplicationController
    end
 
    def destroy
-     set_student
      @student.destroy
      redirect_to students_path
    end
