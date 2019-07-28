@@ -1,12 +1,13 @@
 class CoursesController < ApplicationController
 
-before_action :set_course
+# before_action :set_course
 
    def index
        @courses = current_user.courses
    end
 
    def show
+      set_course
       @students = Student.all
       @grades = @course.grades
    end
@@ -25,11 +26,11 @@ before_action :set_course
   end
 
   def edit
-
+   set_course
   end
 
   def update
-
+    set_course
     if @course.update(course_params)
       redirect_to course_path(@course)
     else
@@ -39,7 +40,7 @@ before_action :set_course
 
 
   def destroy
-    
+    set_course
     @course.destroy
     redirect_to courses_path
   end
