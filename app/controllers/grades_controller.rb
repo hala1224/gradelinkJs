@@ -1,5 +1,5 @@
 class GradesController < ApplicationController
-# before_action :set_grade
+before_action :set_grade, only: [:show, :edit, :update, :destroy]
 
   def new
     @students = Student.all
@@ -22,7 +22,6 @@ class GradesController < ApplicationController
 #  Showing individual grade
 
     def show
-     set_grade
      @course = Course.find_by_id(@grade.course_id)
     end
 
@@ -37,20 +36,17 @@ class GradesController < ApplicationController
 
 
     def edit
-      set_grade
       @course = Course.find_by_id(params[:id])
       @student = Student.find_by_id(@grade.student_id)
     end
 
     def update
-      set_grade
       @grade.update(grade_params)
       @grade.save
       redirect_to grade_path(@grade)
     end
 
     def destroy
-      set_grade
       @grade.destroy
       redirect_to grades_path
     end
