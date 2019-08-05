@@ -29,3 +29,4 @@ Set up:
 Notes:
 At the moment, users cannot delete the populated students(you can remove the seeded data), but can add new students.
 Users can create courses and add grades for that course.  Future versions will make such attributes submittable on a user level.
+# gradelinkJs

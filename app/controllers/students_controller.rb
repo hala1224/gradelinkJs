@@ -4,11 +4,19 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   def index
     @students = Student.order_by_average
+    respond_to do |f|
+      f.html {render :index}
+      f.json {render json: @students}
+    end
   end
 
   def show
     @courses = Course.all
     @grades = @student.grades
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @grades}
+    end
   end
 
   def edit
@@ -30,7 +38,10 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
    def create
      @student = Student.new(student_params)
      if @student.save
-       redirect_to students_path
+       respond_to do |f|
+         f.html { redirect_to students_path}
+         f.json { render json: @student}
+       end
      else
        render :new
      end

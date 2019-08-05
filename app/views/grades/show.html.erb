@@ -1,0 +1,28 @@
+<h3> Here is the grade for: <%= @grade.student.last_name%>, <%= @grade.student.first_name%> </h3>
+<br></br>
+
+<h3>Course: <%= @course.coursename %>: </h3>
+<br></br>
+<div>
+  <h4>Grade: <%= @grade.value%> </h4>
+  <h4>Comment: "<%= @grade.comment%>" </h4>
+</div>
+
+<% if @course.user == current_user %>
+<p>
+
+
+
+
+        <%= link_to "Back to Course", course_grades_path(@course) %></button>
+    <button class="btn btn-outline-primary">
+
+      <%= link_to "Edit Grade", edit_grade_path(@grade) %></button>
+      <button class="btn btn-outline-primary">
+
+
+</p>
+
+<% end %>
+ <!-- link_to "Delete Grade", grade_path(@grade), data: { confirm: 'Are you sure?' }, method: :delete  %></button> -->
+<!-- <button class="btn btn-outline-primary"> -->

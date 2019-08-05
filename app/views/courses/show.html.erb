@@ -31,8 +31,9 @@
 
 
     <% if @course.grades.count < @students.count %>
+      <button class="btn btn-outline-primary">
         <%= link_to "Enter Grade/Comment", new_course_grade_path(@course) %></button>
-    <button class="btn btn-outline-primary">
+  
     <% end %>
 
     <%= link_to "All grades", course_grades_path(@course)%></button>

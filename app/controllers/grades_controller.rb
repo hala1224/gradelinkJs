@@ -11,6 +11,13 @@ before_action :set_grade, only: [:show, :edit, :update, :destroy]
     @grade = Grade.new(grade_params)
     @course = Course.find_by_id(params[:course_id])
     if @grade.save
+#       Adding json
+#      respond_to do |f|
+#         f.html {redirect_to grade_path(@grade)}
+#         f.json {render :json => @grade}
+#      end
+
+
         redirect_to grade_path(@grade)
     else
         @students = Student.all
