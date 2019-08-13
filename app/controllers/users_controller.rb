@@ -20,7 +20,10 @@ class UsersController < ApplicationController
 
   def show
    @user = User.find_by_id(params[:id])
-   redirect_to '/' if !@user
+   # respond_to do |f|
+          redirect_to '/' if !@user
+    # f.json {render json: @user}
+  
   end
 
   def most_popular
@@ -30,6 +33,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:id, :username, :email, :password)
   end
 end

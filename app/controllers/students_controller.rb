@@ -5,7 +5,8 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
   def index
     @students = Student.order_by_average
     respond_to do |f|
-      f.html {render :index}
+      f.html
+      # {render :index}
       f.json {render json: @students}
     end
   end
@@ -14,8 +15,9 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
     @courses = Course.all
     @grades = @student.grades
     respond_to do |f|
-      f.html {render :show}
-      f.json {render json: @grades}
+      f.html
+      # {render :show}
+      f.json {render json: @student}
     end
   end
 
@@ -36,15 +38,18 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
    end
 
    def create
+     # binding.pry
      @student = Student.new(student_params)
+#   Get rid of if statement
+
      if @student.save
-       respond_to do |f|
-         f.html { redirect_to students_path}
-         f.json { render json: @student}
-       end
-     else
-       render :new
-     end
+       # respond_to do |f|
+         # f.html { redirect_to students_path}
+         render json: @student
+       # end
+     # else
+     #   render :new
+    end
    end
 
    def destroy

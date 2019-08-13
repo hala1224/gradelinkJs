@@ -1,6 +1,12 @@
+<!-- <script>window.onload = function() {
+  getUser();
+}; </script> -->
+
 
 <br><br>
+<section   class="container user-show" data-user-id=<%@user.id %>>
 <h1> Welcome <%= @user.username %> </h1>
+</section>
 <% if @courses != nil %>
     <table class='table table-bordered'>
       <thead>

@@ -18,7 +18,8 @@ before_action :set_course, only: [:show, :edit, :update, :destroy]
   def create
     @course = current_user.courses.build(course_params)
     if @course.save
-      redirect_to course_path(@course)
+      # redirect_to course_path(@course)
+      render json: @course
     else
       render :new
     end
