@@ -38,18 +38,13 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
    end
 
    def create
-     # binding.pry
      @student = Student.new(student_params)
 #   Get rid of if statement
 
-     if @student.save
-       # respond_to do |f|
-         # f.html { redirect_to students_path}
-         render json: @student
-       # end
-     # else
-     #   render :new
-    end
+     # if
+       @student.save
+       render json: @student
+     # end
    end
 
    def destroy
