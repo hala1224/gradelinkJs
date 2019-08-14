@@ -1,7 +1,7 @@
 const homeUrl = 'http://localhost:3000/'
 
 // To make sure the DOM is loaded
-// - Document ready function to hijack the click/submit events
+// - Document ready function  $(()=>{}) shorthand to hijack the click/submit events
 // - jQuery => $ interface with the library
 $(() => {
   listenForAllStudentsClick();
@@ -83,14 +83,15 @@ const getStudent = (id) => {
       let newStudent = new Student(student);
       $('#app-container').html(`
         <h2> ${newStudent.first_name} ${newStudent.last_name}</h2>
-        <table class="table table-bordered">
-       <thead>
-        <tr>
-          <th style="width:300px;">Course </th>
-          <th style="width:50px;">Grade</th>
-          <th >Comment</th>
-        </tr>
-       </thead>`)
+         <table class="table table-bordered">
+        <thead>
+         <tr>
+           <th style="width:300px;">Course </th>
+           <th style="width:70px;">Grade</th>
+           <th >Comment</th>
+         </tr>
+        </thead>
+        `)
       let studentHtml = newStudent.formatShow()
       $('#app-container').append(studentHtml)
     })
@@ -122,39 +123,30 @@ class Student {
  }
 
  formatShow () {
+            let newHtml=""
+            let courseHtml = this.courses
+            let gradesHtml = this.grades
+            courseHtml.forEach((course, i) =>
+                   newHtml += (`<table class="table table-bordered">
+                     <tbody>
+                     <tr>
+                         <td style="width:300px;"> ${course.coursename}</td>
+                         <td style="width:70px;"> ${gradesHtml[i].value}</td>
+                         <td> ${gradesHtml[i].comment} </td>
+                               </tr>
+                            </tbody>
+                         </table>
+                      `)
+             )
 
-  let courseHtml = this.courses.map(course =>{
-     return (` <h4> ${course.coursename}   </h4>`)
-   })
-   let gradesHtml = this.grades.map(grade => {
-    return (` <h4>     ${grade.value}          ${grade.comment}   </h4>`)
-   })
-//     return (`<table class="table table-bordered">
-//     <tbody>
-//       <tr>
-//        <td> ${course.coursename}</td>`)
-//   })
-//   // .join(" ")
-//   let gradesHtml = this.grades.map(grade =>{
-//     // console.log(course)
-//     return (`
-//         <td>  ${grade.value} </td>
-//         <td>  ${grade.comment}</td>
-//         </tr>
-//   </tbody>
-//   </table>
-// `)
-//   })
-  // .join(" ")
-
-    return courseHtml+gradesHtml
-
- }
+    return newHtml
+}
 
  formatStudent () {
    let studentHtml = `
    <h2>${this.first_name} ${this.last_name}</h2>
-
+   <br></br>
+   <h4> No Courses To Show </h4>
    `
    return studentHtml
  }
