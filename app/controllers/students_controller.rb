@@ -3,7 +3,8 @@ before_action :set_student, only: [:show, :edit, :update, :destroy]
 
 
   def index
-    @students = Student.order_by_average
+    # @students = Student.order_by_average
+    @students = Student.all
     respond_to do |f|
       f.html
       # {render :index}

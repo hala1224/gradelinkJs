@@ -7,6 +7,7 @@ $(() => {
   listenForAllStudentsClick();
   listenForStudent();
   listenForNewStudentSubmission();
+  listenForSortStudentsButton();
   // getUser();
 });
 
@@ -16,14 +17,56 @@ const clearDom = () => {
 }
 
 const listenForAllStudentsClick = () => {
+  // Selecting with Jquery the element with id #all_students
   //Listen for click on link with all_students id, and use callback function that takes an event parameter
     $('#all_students.navbar-brand').on('click', (event) => {
      event.preventDefault();
      // clearDom better here??
      clearDom();
+     // appending "students" to the url and using history method
      let url = homeUrl + "students"
      history.pushState(null, null, url)
      getStudents();
+   });
+};
+
+const listenForSortStudentsButton = () => {
+  // Selecting with Jquery the element with id #all_students
+  //Listen for click on link with all_students id, and use callback function that takes an event parameter
+    $('#sort_students.navbar-brand').on('click', (event) => {
+     // clearDom better here??
+     // console.log('clicked')
+     // appending "students" to the url and using history method
+     fetch(`/students.json`)
+     //Use #then to get the response object (which is a promise) and call #json to convert it and parse the data
+     .then(response => response.json())
+     // #students method
+     .then(students => {
+       clearDom();
+       $('#app-container').html('<h1>Sorting Students</h1>')
+       console.log(students)
+       students.sort(function(a, b) {
+          var nameA = a.last_name.toUpperCase(); // ignore upper and lowercase
+          var nameB = b.last_name.toUpperCase(); // ignore upper and lowercase
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          // names must be equal
+          return 0;
+        });
+        // console.log(students)
+        students.forEach( student => {
+         let newStudent = new Student(student);
+         let studentHtml = newStudent.formatIndex();
+         $('#app-container').append(studentHtml);
+
+       })
+     })
+
    });
 };
 
@@ -96,7 +139,7 @@ const getStudent = (id) => {
       $('#app-container').append(studentHtml)
     })
  }
-
+// Utilizing JS model object
 class Student {
   constructor(student) {
   this.id = student.id;
@@ -105,7 +148,9 @@ class Student {
   this.grades = student.grades;
   this.courses = student.courses;
  }
-
+// Creating formats for each action
+// Easier to do it inside the class vs. outside and Student.prototype.format
+// Added class show_link to grab the student with id selected
  formatIndex () {
 
    let studentHtml = `
